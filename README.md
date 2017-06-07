@@ -1,4 +1,4 @@
 # gpg_cleanup
 Script to clean up your gpg keyring
 
-Use por sua conta e risco :)
+Use at your own risk :)
