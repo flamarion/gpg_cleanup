@@ -2,7 +2,7 @@
 # clean_keyring.sh - clean up all the excess keys
 
 # my key should probably be the first secret key listed
-mykey=$(gpg --list-secret-keys | grep ^\ | cut -c 7-14)
+mykey=$(gpg --list-secret-keys | grep ^\ | cut -c 7-)
 if [ -z $mykey ]
 then
     # exit if no key string
@@ -23,12 +23,12 @@ keepers_egrep=$(echo $keepers | sed 's/^/^(/; s/$/)/; s/ /|/g;')
 echo '# Keepers: ' $keepers
 
 # everyone who isn't on the keepers list is deleted
-deleters=$(gpg --list-keys | grep ^\ | cut -c 7-14 | egrep -v ${keepers_egrep})
+deleters=$(gpg --list-keys | grep ^\ | cut -c 7- | egrep -v ${keepers_egrep})
 
 # echo the command if there are any to delete
 # command is interactive
 if
-    [ -z $deleters ]
+    [ -z $deleters 2>/dev/null ]
 then
     echo "# Nothing to delete!"
 else
